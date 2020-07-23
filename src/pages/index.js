@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React, { useState, useEffect } from "react"
 import { Link } from "gatsby"
 
 import Layout from "../components/layout"
@@ -11,17 +11,18 @@ export const wait = ms =>
   })
 
 const IndexPage = () => {
+  const [waited, setWaited] = useState(false)
   useEffect(() => {
     ;(async () => {
       await wait(1000)
-      console.log("Hello!")
+      setWaited(true)
     })()
   }, [])
 
   return (
     <Layout>
       <SEO title="Home" />
-      <h1>Hi people</h1>
+      <h1>Hi people{waited && " - Worked!"}</h1>
       <p>Welcome to your new Gatsby site.</p>
       <p>Now go build something great.</p>
       <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
